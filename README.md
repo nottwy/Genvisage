@@ -8,13 +8,12 @@ University of Illinois Urbana-Champaign
 1. [Motivation](#motivation)
 2. [Installation](#installation)
 3. [Tutorial](#tutorial)
-    1. [Creating Gene Sets](#creating-gene-sets)
-    2. [Building Heterogeneous Networks](#building-heterogeneous-networks)
-    3. [Example DRaWR Runs](#example-drawr-runs)
-4. [DRaWR Resources](#drawr-resources)
-    1. [Function Parameters](#function-parameters)
-    2. [Input File Formats](#input-file-formats)
-    3. [Output File Formats](#output-file-formats)
+	1. [Feature-object Matrix](#Feature-object-Matrix)
+    2. [Creating Gene Sets](#creating-gene-sets)
+    3. [Selecting Genvisage Algorithm](#Selecting-Genvisage-Algorithm)
+    4. [Example Genvisage Run](#Example-Genvisage-Run)
+4. [Command Configs](#Command-Configs )
+
 ## Motivation
 
 A fundamental, but challenging problem in the analysis of genomics datasets is the separability task: discovering features that most strongly capture the difference between two different classes (sets) of biological objects with high dimensional feature representations, such as gene signatures described by their transcriptomic profiles, or genes described by their functional annotations. This problem is typically addressed by finding discriminative, significant single features using univariate statistical methods, or by identifying difficult-to-interpret multi-feature combinations using time-intensive machine learning algorithms. We sought a middle ground that is simultaneously rapid, interpretable, salient, and significant.
@@ -29,14 +28,9 @@ Our tool, Genvisage, enables researchers to interactively identify visually inte
 
 If you wish to use the sample files necessary to complete this tutorial or the datasets from the paper, first clone this repository from github:
 ```
-git clone https://github.com/cblatti3/DRaWR.git
+git clone https://github.com/slhuang/Genvisage.git
 ```
 
-To use the 5 species networks from the paper, you must first unzip their contents:
-```
-gunzip networks/5ins_cdhmw.names.edge.gz
-gunzip networks/5sp_adhiw.names.edge.gz
-```
 
 [Return to TOC](#table-of-contents)
 
