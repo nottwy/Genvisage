@@ -37,7 +37,7 @@ To use the 5 species networks from the paper, you must first unzip their content
 ```
 gunzip networks/5ins_cdhmw.names.edge.gz
 gunzip networks/5sp_adhiw.names.edge.gz
-
+```
 
 [Return to TOC](#table-of-contents)
 
