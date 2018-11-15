@@ -74,7 +74,7 @@ This mode is the fastest method because it rather than sampling and evaluating a
 
 Now that we have our gene sets and our feature-gene matrix prepared, we are ready to run Genvisatge. We first compile the program:
 ```
-g++ -o rocchio rocchio.c -O3
+g++ -o rocchio rocchio.c -O3 -std=c++11
 ```
 Next, we will first illustrate some example runs. Here we only input one positive gene set and treat all other genes in the feature-gene matrix as negative. We will describe the meaning of each parameters in the command in the next [section](#command-configs).
 
