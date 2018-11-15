@@ -24,7 +24,7 @@ Our tool, Genvisage, enables researchers to interactively identify visually inte
 
 ## Installation
 
-### Local copy of DRaWR repository
+### Local copy of Genvisage repository
 
 If you wish to use the sample files necessary to complete this tutorial or the datasets from the paper, first clone this repository from github:
 ```
