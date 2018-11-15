@@ -76,12 +76,33 @@ Now that we have our gene sets and our feature-gene matrix prepared, we are read
 ```
 g++ -o rocchio rocchio.c -O3
 ```
+Next, we will first illustrate some example runs. Here we only input one positive gene set and treat all other genes in the feature-gene matrix as negative. We will describe the meaning of each parameters in the command in the next [section](#command-configs).
+
+#### EarlyOrdering Mode
+```
+./rocchio -matrixF /path/to/your/feature-matrix -expF /path/to/your/positive-gene-set -outDir /path/to/your/output_fir -weighted -earlyT -sortG 
+```
+
+#### SampOpt Mode
+
+```
+./rocchio -matrixF /path/to/your/feature-matrix -expF /path/to/your/positive-gene-set -outDir /path/to/your/output_fir -weighted -samplOpt
+```
+
+#### HorizSampOpt Mode
+
+```
+./rocchio -matrixF /path/to/your/feature-matrix -expF /path/to/your/positive-gene-set -outDir /path/to/your/output_fir -weighted -samplOpt -sortF Fconsider 500000
+```
+
+
+## Command Configs 
 Next, we describe the different parameters in the running command.
 
-#### -matrixF
+### -matrixF
 The string after -matrixF specifies the file storing the feature-gene matrix we will use in Genvisage. The first row in the file depicts the feature names. Afterwards, each row in the file represents a gene, starting with the gene name, followed by the feature values separated by comma. Please refer to [our provided feature-object matrix](data/feature_gene_scale.selected.txt) for example.
 
-#### -expF
+### -expF
 The default experiment discriminate the input positive genes from all the remaining genes in the feature-gene matrix. The string after -expF specifies the file storing the positive gene set. Each row in the file is a gene. Please refer to [our provided positive gene set](data/DELYS_THYROID_CANCER). 
 
 The user can perform Genvisage to discriminate an input positive gene set from another input negative gene set, by adding "-pos_neg" in the command line and specifying the positive gene get file after "-expF" and negative gene set file after "-expF2". An example command is as below:   
@@ -90,12 +111,12 @@ The user can perform Genvisage to discriminate an input positive gene set from a
 ./rocchio -matrixF /path/to/your/feature-matrix -pos_neg -expF /path/to/your/positive-gene-set -expF2 /path/to/your/negative-gene-set -outDir /path/to/your/output_fir -weighted -earlyT -sortG 
 ```
 
-#### -outDir
+### -outDir
 The string after -outDir specifies the directory to store the output files, e.g., top_k single feature, top-k feature pairs, running time, etc.
 
-#### -weighted
+### -weighted
 In order to handle inbalance between the number of positive genes and negative genes, we can add "-weighted" in the run command such that the weighted number of positive genes and negative genes are the same. This is particular useful when the input positive gene size is in hundreds, while the remaining negative gene size is in tens of thousands.
 
-#### EarlyOrdering Mode
+
 
 [Return to TOC](#table-of-contents)
