@@ -31,6 +31,10 @@ If you wish to use the sample files necessary to complete this tutorial or the d
 git clone https://github.com/slhuang/Genvisage.git
 ```
 
+To use the [full feature-gene matrix](http://veda.cs.uiuc.edu/RWR/tmp/feature_gene_scale.selected.txt.gz) described [below](#Feature-object-Matrix), you must first unzip its contents:
+```
+gunzip feature_gene_scale.selected.txt.gz
+```
 
 [Return to TOC](#table-of-contents)
 
@@ -43,7 +47,8 @@ This section of the README is meant to walk a user through a process of using Ge
 ### Feature-object Matrix
 The user can use their own feature-object matrix for analysis, where the value in each cell denotes the feature value for each corresponding gene. The format of feature matrix can be found [here](#-matrixF). 
 
-User can also use [our sampled feature-gene matrix](data/matrix_sample.txt) with 50 Gene Ontology annotation terms as the features and with 5000 gene objects. Rather than being a 0/1 membership indicator matrix, the features of this matrix represent the diffusion of the gene across a heterogeneous network of prior knowledge about the annotation of and the relationships between genes (see [DRaWR](https://www.ncbi.nlm.nih.gov/pubmed/27153592) method for more details). The prior knowledge in the heterogeneous network used here included annotations from [Gene Ontology](http://www.geneontology.org/), [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), and [Pfam](https://pfam.xfam.org/) as well as gene-gene relationships from protein similarity defined by [BLASTP](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE=Proteins). After diffusion was performed, 3,632 Gene Ontology terms were extracted creating a term-gene matrix where each value represents the scaled probability that a random walk started at the gene would be at the Gene Ontology term. 
+User can also use [our provided feature-gene matrix](http://veda.cs.uiuc.edu/RWR/tmp/feature_gene_scale.selected.txt.gz) with 3,632 Gene Ontology annotation terms as the features and with 22,210 gene objects. Rather than being a 0/1 membership indicator matrix, the features of this matrix represent the diffusion of the gene across a heterogeneous network of prior knowledge about the annotation of and the relationships between genes (see [DRaWR](https://www.ncbi.nlm.nih.gov/pubmed/27153592) method for more details). The prior knowledge in the heterogeneous network used here included annotations from [Gene Ontology](http://www.geneontology.org/), [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), and [Pfam](https://pfam.xfam.org/) as well as gene-gene relationships from protein similarity defined by [BLASTP](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE=Proteins). After diffusion was performed, 3,632 Gene Ontology terms were extracted creating a term-gene matrix where each value represents the scaled probability that a random walk started at the gene would be at the Gene Ontology term. 
+A [sampled feature-gene matrix](data/matrix_sample.txt) with 50 Gene Ontology annotation terms as the features and with 5000 gene objects is provided in this git repository.
 
 ### Creating Gene Sets
 
