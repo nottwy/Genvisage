@@ -21,7 +21,7 @@ A fundamental, but challenging problem in the analysis of genomics datasets is t
 
 Our tool, Genvisage, enables researchers to interactively identify visually interpretable, significant feature pairs that strongly separate two classes. This webserver embodies one possible use case of Genvisage, where the user wants to find pairs of Gene Ontology functional annotation terms that when considered together are especially good at distinguishing the genes of two separate user-submitted gene sets.
 
-![Method Overview](images/DRaWR_method.small.png)
+![Method Overview](images/genvisage_overview.png)
 
 [Return to TOC](#table-of-contents)
 
