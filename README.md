@@ -78,18 +78,18 @@ g++ -o rocchio rocchio.c -O3
 ```
 Next, we will first illustrate some example runs. Here we only input one positive gene set and treat all other genes in the feature-gene matrix as negative. We will describe the meaning of each parameters in the command in the next [section](#command-configs).
 
-#### EarlyOrdering Mode
+#### EarlyOrdering Mode Command
 ```
 ./rocchio -matrixF /path/to/your/feature-matrix -expF /path/to/your/positive-gene-set -outDir /path/to/your/output_fir -weighted -earlyT -sortG 
 ```
 
-#### SampOpt Mode
+#### SampOpt Mode Command
 
 ```
 ./rocchio -matrixF /path/to/your/feature-matrix -expF /path/to/your/positive-gene-set -outDir /path/to/your/output_fir -weighted -samplOpt
 ```
 
-#### HorizSampOpt Mode
+#### HorizSampOpt Mode Command
 
 ```
 ./rocchio -matrixF /path/to/your/feature-matrix -expF /path/to/your/positive-gene-set -outDir /path/to/your/output_fir -weighted -samplOpt -Fconsider 500000 -sortF 
@@ -132,5 +132,8 @@ Instead of evaluating all possible feature pairs, it greedily only examines a su
 
 ### -sortF
 This flag first sort features based on single feature property, and then traverse the feature pairs in this sorted feature ordering. This is especially useful when we only consider a subser of feature pairs as the candidates, i.e., [-Fconsider](#-Fconsider), since "-sortF" essentially helps select the good candidate feature pairs.
+
+### -vertical
+This flag defines the feature pair traversal ordering. In vertical traversal, we require both features perform well on their own in order to form a feature pair candidate. The default is horizontal traversal as in [HorizSampOpt Mode](#HorizSampOpt-Mode), where at least one feature performs well on its own and we pair it with all other features and form a feature pair candidate. This flag is usually coupled with "-sortF", otherwise, different traversal mechanism is simply randomly picking feature pairs.  
 
 [Return to TOC](#table-of-contents)
