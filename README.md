@@ -1,5 +1,6 @@
 # *Genvisage* - Rapid Identification of Discriminative Feature Pairs for Genomic Analysis
 Silu Huang [shuang86@illinois.edu] Charles Blatti [blatti@illinois.edu], Saurabh Sinha, and Aditya Parameswaran
+
 KnowEnG BD2K Center of Excellence  
 University of Illinois Urbana-Champaign  
 
@@ -46,7 +47,7 @@ gunzip networks/5sp_adhiw.names.edge.gz
 This section of the README is meant to walk a user through a process of using Genvisage to rapidly identify pairs of interacting functional annotations that are able to discriminate between two distinct gene sets.
 
 ### Feature-gene Matrix
-The user can use their own feature-gene matrix for analysis, where the value in each cell denotes the feature value for each corresponding gene. Our program can take in different [forms of feature matrix](#forms-feature-matrix). 
+The user can use their own feature-gene matrix for analysis, where the value in each cell denotes the feature value for each corresponding gene. The format of feature matrix can be found [here](#-matrixF). 
 
 User can also use [our provided feature-object matrix](data/feature_gene_scale.selected.txt) with 3,632 Gene Ontology annotation terms as the features and with 22,210 gene objects. Rather than being a 0/1 membership indicator matrix, the features of this matrix represent the diffusion of the gene across a heterogeneous network of prior knowledge about the annotation of and the relationships between genes (see [DRaWR](https://www.ncbi.nlm.nih.gov/pubmed/27153592) method for more details). The prior knowledge in the heterogeneous network used here included annotations from [Gene Ontology](http://www.geneontology.org/), [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), and [Pfam](https://pfam.xfam.org/) as well as gene-gene relationships from protein similarity defined by [BLASTP](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE=Proteins). After diffusion was performed, 3,632 Gene Ontology terms were extracted creating a term-gene matrix where each value represents the scaled probability that a random walk started at the gene would be at the Gene Ontology term. 
 
@@ -69,6 +70,32 @@ This method is faster that the EarlyOrdering mode because rather than fully eval
 #### HorizSampOpt Mode
 This mode is the fastest method because it rather than sampling and evaluating all possible feature pairs, it greedily only examines 500,000 feature pairs for possible candidates. These feature pairs will be selected by having at least one of their two features being a good single feature separator of the positive and negative gene sets in its own right. This mode is the least accurate because not only might true top feature pairs not be identified as candidates, they might not be considered at all.
 
+### Example Genvisage Run
 
+Now that we have our gene sets and our feature-gene matrix prepared, we are ready to run Genvisatge. We first compile the program:
+```
+g++ -o rocchio rocchio.c -O3
+```
+Next, we describe the different parameters in the running command.
+
+#### -matrixF
+The string after -matrixF specifies the file storing the feature-gene matrix we will use in Genvisage. The first row in the file depicts the feature names. Afterwards, each row in the file represents a gene, starting with the gene name, followed by the feature values separated by comma. Please refer to [our provided feature-object matrix](data/feature_gene_scale.selected.txt) for example.
+
+#### -expF
+The default experiment discriminate the input positive genes from all the remaining genes in the feature-gene matrix. The string after -expF specifies the file storing the positive gene set. Each row in the file is a gene. Please refer to [our provided positive gene set](data/DELYS_THYROID_CANCER). 
+
+The user can perform Genvisage to discriminate an input positive gene set from another input negative gene set, by adding "-pos_neg" in the command line and specifying the positive gene get file after "-expF" and negative gene set file after "-expF2". An example command is as below:   
+
+```
+./rocchio -matrixF /path/to/your/feature-matrix -pos_neg -expF /path/to/your/positive-gene-set -expF2 /path/to/your/negative-gene-set -outDir /path/to/your/output_fir -weighted -earlyT -sortG 
+```
+
+#### -outDir
+The string after -outDir specifies the directory to store the output files, e.g., top_k single feature, top-k feature pairs, running time, etc.
+
+#### -weighted
+In order to handle inbalance between the number of positive genes and negative genes, we can add "-weighted" in the run command such that the weighted number of positive genes and negative genes are the same. This is particular useful when the input positive gene size is in hundreds, while the remaining negative gene size is in tens of thousands.
+
+#### EarlyOrdering Mode
 
 [Return to TOC](#table-of-contents)
