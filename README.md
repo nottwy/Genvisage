@@ -19,9 +19,7 @@ University of Illinois Urbana-Champaign
 
 A fundamental, but challenging problem in the analysis of genomics datasets is the separability task: discovering features that most strongly capture the difference between two different classes (sets) of biological objects with high dimensional feature representations, such as gene signatures described by their transcriptomic profiles, or genes described by their functional annotations. This problem is typically addressed by finding discriminative, significant single features using univariate statistical methods, or by identifying difficult-to-interpret multi-feature combinations using time-intensive machine learning algorithms. We sought a middle ground that is simultaneously rapid, interpretable, salient, and significant.
 
-Our tool, Genvisage, enables researchers to interactively identify visually interpretable, significant feature pairs that strongly separate two classes. This webserver embodies one possible use case of Genvisage, where the user wants to find pairs of Gene Ontology functional annotation terms that when considered together are especially good at distinguishing the genes of two separate user-submitted gene sets.
-
-![Method Overview](images/genvisage_overview.png)
+Our tool, Genvisage, enables researchers to interactively identify visually interpretable, significant feature pairs that strongly separate two classes. This repository is essentially the backend of [our webserver](http://genvisage.knoweng.org:443), which embodies one possible use case of Genvisage, where the user wants to find pairs of Gene Ontology functional annotation terms that when considered together are especially good at distinguishing the genes of two separate user-submitted gene sets.
 
 [Return to TOC](#table-of-contents)
 
@@ -44,7 +42,9 @@ gunzip networks/5sp_adhiw.names.edge.gz
 
 ## Tutorial
 
-This section of the README is meant to walk a user through a process of using Genvisage to rapidly identify pairs of interacting functional annotations that are able to discriminate between two distinct gene sets.
+This section of the README is meant to walk a user through a process of using Genvisage to rapidly identify pairs of interacting functional annotations that are able to discriminate between two distinct gene sets. We first give an overview picture of how Genvisage works.
+
+![Method Overview](images/genvisage_overview.png)
 
 ### Feature-gene Matrix
 The user can use their own feature-gene matrix for analysis, where the value in each cell denotes the feature value for each corresponding gene. The format of feature matrix can be found [here](#-matrixF). 
