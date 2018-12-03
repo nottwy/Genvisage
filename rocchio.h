@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
 #include <map>
 #include <iostream>
-#include <queue> 
+#include <fstream>
+#include <queue>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 typedef double val_type;
@@ -11,7 +13,7 @@ struct feature{
     vector<val_type > vals;
     int correct;
     int fid;
-    
+
     feature(vector<val_type > _vals, int _correct, int _fid):vals(_vals),correct(_correct),fid(_fid){}
     feature(){}
     bool operator<(const feature& a) const  //sort from high to low
@@ -67,14 +69,17 @@ int  FEATURE_CONSIDER, MATRIX_GENE_NUM,GENE_NUM, FEATURE_NUM,TOPK;
 long FEATURE_CONSIDER_TOTAL;
 double DELTA,REST;
 bool EARLY_TERMINATE, SORT_G, SORT_F,HORIZONTAL, WEIGHTED, SAMPLING,SAMPLING_OPT,TRASNFORM,PRINT,HIST; // WEIGHTED: pos v.s. neg
-string DELIMITER, MATRIXF, EXPF, EXPF2;
+string DELIMITER, MATRIXF, EXPF, EXPF2, output_dir;
 int printF1, printF2, histSize, buckets;
+
 
 vector<vector<val_type > > matrix;
 vector<int > genes; // indicate the positive or negative of this gene
-vector<feature > features; // 
-vector<feature > ff; //
+vector<feature > features; // genes are not sorted: initialization for ff; $features is not used afterwards
+vector<vector<val_type > > raw; // matrix[fid][gid]
+vector<feature > ff; // genes are sorted or not -> use ff in the algorithm 
 vector<vector<val_type > > sample_f;
 map<string, int> gene_id;  // gene name -> gid
 vector<string > featureName;
+std::vector<pair<int, int> > prints;
 int pos_num,pos_weight;
