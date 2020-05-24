@@ -1,3 +1,6 @@
+This is forked at 2020.5.25.
+Modifications between the latest version and this one should be considered before using this one.
+
 # *Genvisage* - Rapid Identification of Discriminative Feature Pairs for Genomic Analysis
 Silu Huang [shuang86@illinois.edu] Charles Blatti [blatti@illinois.edu], Saurabh Sinha, and Aditya Parameswaran
 
